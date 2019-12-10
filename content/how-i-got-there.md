@@ -1,6 +1,10 @@
-# How I Got There
+---
+id: how-i-got-there
+title: How I Got There
+---
 
 ## How I Started Writing This Book
+
 When I first got the idea for InfraGen I was obsessed. For a few days it was all I could think about. Every bit of free time I had I spent coding InfraGen. I didn't even give my girlfriend, Asya, a proper good bye the day she went to Africa because my mind was completely immersed in this project. We've all been there!
 
 I had a long vacation coming up myself. A few days late, I was off to a 4 day meditation retreat at MAPLE (a Buddhist monastery), later meeting with my roommates and girlfriend in Tanzania. Up until I reached MAPLE, I had coded for at least 24 consecutive hours.
