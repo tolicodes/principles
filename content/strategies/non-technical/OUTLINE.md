@@ -3,6 +3,9 @@ id: strategies-non-technical-outline
 title: Non-Technical Strategies Outline
 ---
 
+- acro yoga
+- cuddle parties
+- circling
 - meditation
 - breaking-down-tasks
   - Why do it?
