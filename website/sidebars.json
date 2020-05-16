@@ -1,0 +1,15 @@
+{
+  "docs": {
+    "Principles": [
+      "toc",
+      "preface",
+      "how-i-got-there",
+      "life-principles",
+      "technical-principles"
+    ],
+    "Strategies": [
+      "strategies-technical-outline",
+      "strategies-non-technical-outline"
+    ]
+  }
+}

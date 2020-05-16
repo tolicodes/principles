@@ -1,4 +1,7 @@
-# What I Learned
+---
+id: life-principles
+title: Life Principles
+---
 
 Here's what I consider the most important part of the preface, the realizations I had at my retreat, and the conclusion I drew from them.
 
@@ -64,7 +67,7 @@ This is different from hedonism, the act of indulging myself with whatever mater
 
 The above sections mostly talk about myself, how I should treat and view myself. This last principle is all about my **relationship with others**.
 
-At many points of my life, I felt as if the world was out to get me. I rejected all criticism, saying: "No! I know that I'm right", "That doesn't apply to me!",  "They're just jealous", "They're just trying to hurt my feelings".
+At many points of my life, I felt as if the world was out to get me. I rejected all criticism, saying: "No! I know that I'm right", "That doesn't apply to me!", "They're just jealous", "They're just trying to hurt my feelings".
 
 > I felt **threatened** when programmers presented ideas different from mine. I had to be right!! Because if I was **wrong** then I am not valuable. And if I'm not valuable then I **don't deserve to be loved**.
 

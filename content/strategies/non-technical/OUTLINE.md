@@ -1,3 +1,8 @@
+---
+id: strategies-non-technical-outline
+title: Non-Technical Strategies Outline
+---
+
 - meditation
 - breaking-down-tasks
   - Why do it?
