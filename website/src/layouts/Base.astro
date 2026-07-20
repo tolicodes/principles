@@ -1,0 +1,49 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/literata';
+import '../styles/global.css';
+import { REPO } from '../chapters';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="wordmark" href="/">Principles<span class="ampersand">.</span></a>
+        <nav class="site-nav">
+          <a href="/#contents">Contents</a>
+          <a href="/#contribute">Contribute</a>
+          <a href={REPO}>GitHub</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© {new Date().getFullYear()} <a href="https://tolicodes.com">@tolicodes</a></span>
+        <span>Forkable, like all good ideas — <a href={REPO}>source on GitHub</a></span>
+      </div>
+    </footer>
+  </body>
+</html>

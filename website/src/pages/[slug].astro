@@ -1,0 +1,120 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { CHAPTERS, REPO, romanNumeral } from '../chapters';
+
+export function getStaticPaths() {
+  return CHAPTERS.map((chapter, index) => ({
+    params: { slug: chapter.id },
+    props: { chapter, index },
+  }));
+}
+
+const { chapter, index } = Astro.props;
+const entry = await getEntry('chapters', chapter.id);
+if (!entry) throw new Error(`Missing content for chapter "${chapter.id}"`);
+const { Content } = await render(entry);
+
+const prev = CHAPTERS[index - 1];
+const next = CHAPTERS[index + 1];
+---
+
+<Base title={`${chapter.title} · Principles`} description={chapter.blurb}>
+  <article class="wrap-prose">
+    <header class="chapter-header">
+      <p class="overline">Chapter {romanNumeral(index + 1)}</p>
+      <h1>{chapter.title}</h1>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+    <div class="fleuron" aria-hidden="true">❦</div>
+    <nav class="pager" aria-label="Chapters">
+      {
+        prev && (
+          <a class="pager-link" href={`/${prev.id}/`}>
+            <span class="pager-label">← Previous</span>
+            <span class="pager-title">{prev.title}</span>
+          </a>
+        )
+      }
+      {
+        next && (
+          <a class="pager-link next" href={`/${next.id}/`}>
+            <span class="pager-label">Next →</span>
+            <span class="pager-title">{next.title}</span>
+          </a>
+        )
+      }
+    </nav>
+    <p class="edit-link">
+      See a typo, or have a better strategy?
+      <a href={`${REPO}/blob/master/content/${chapter.id}.md`}>Edit this chapter on GitHub</a>
+    </p>
+  </article>
+</Base>
+
+<style>
+  .chapter-header {
+    padding: 3rem 0 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 2.5rem;
+  }
+
+  .chapter-header h1 {
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    margin: 0.5rem 0 0;
+  }
+
+  .pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .pager-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1rem 1.2rem;
+    max-width: 46%;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: var(--paper-raised);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .pager-link:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--rule));
+  }
+
+  .pager-link.next {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .pager-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .pager-title {
+    font-family: var(--display);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .edit-link {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 0.88rem;
+    color: var(--faint);
+  }
+</style>
