@@ -21,7 +21,7 @@ function remarkContentLinks() {
 }
 
 export default defineConfig({
-  site: 'https://principles.tolicodes.com',
+  site: 'https://principles.toli.me',
   markdown: {
     remarkPlugins: [remarkContentLinks],
   },
