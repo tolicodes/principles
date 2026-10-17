@@ -10,7 +10,7 @@
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.2.5",
     "@fontsource-variable/literata": "^5.2.5",
-    "astro": "^5.12.0",
+    "astro": "^7.3.6",
     "posthog-js": "1.438.2"
   }
 }
