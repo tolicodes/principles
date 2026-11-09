@@ -26,20 +26,17 @@ On October 3, 2026, Toli requested a standalone repository after a temporary dep
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contributions.
 
-## Public session replay — October 7, 2026
 
-PostHog project 651591 (US), pinned posthog-js 1.438.2, loads asynchronously only on the production canonical hostname. Each session is labeled with `site`. Localhost, preview hosts, Do Not Track and Global Privacy Control skip initialization. Publishable client token is source configuration; no personal API credential is included.
+## Website and interaction analytics
 
-Inputs are masked; private-marked elements are blocked; console logs and network headers/bodies are excluded. Analytics URL properties remove queries, credentials and unknown fragments; this is not a guarantee of redaction of every replay snapshot URL. Public book/page text and images remain visible. No user identification or person profiles are created. Analytics failure does not interrupt rendering.
-
-The production build and all four analytics privacy-policy checks passed before committing. Deployment is verified below. Receipt/playback of a real recording is tracked separately in the Wiki/rollout evidence. Existing content, hosting and redirects are preserved.
-
-October 7 deployment verification: The Netlify production build is live: homepage and all six chapters match the tested HTML byte for byte over trusted HTTPS. This documentation commit does not republish application code.
-
-## Replay viewport correction — October 7, 2026
-
-The original network-mask callback returned null for every call. SDK 1.438.2 also invokes it with a URL-only object to mask replay page metadata; dropping that call removed the rrweb Meta event and its viewport dimensions, leaving the playback iframe hidden. Received sessions/full DOM snapshots alone did not verify usable playback; a recorded viewport resize could incidentally make some earlier playback work.
-
-The callback now retains sanitized URL-only metadata and rejects actual network-request records. Headers, bodies, console capture, input masking, production-host/privacy opt-outs and private-context gates retain their contracts. Replay page URLs now use the existing URL sanitizer. A regression invokes the installed SDK's actual URL-mask path and verifies that page metadata survives while request payloads are rejected. Corrected source and checks are committed before publishing; new visual playback and deployment receipts are verified separately. Old recordings lacking viewport metadata are preserved and may remain black.
-
-Viewport correction deployed: runtime source 3afcbe71a29e839f804f49c88d3a29b6f735c4b7; existing Netlify automatic production publishing; root HTML matches rebuilt source. New toli.me playback visibly renders the recorded page. This verifies the corrected shared callback; per-host live source checks do not establish visual playback on every host. Old recordings lacking viewport metadata remain preserved. This documentation follow-up does not rebuild or redeploy runtime code.
+The Astro site in `website/` publishes this book at `principles.toli.me`.
+Netlify builds the production `master` branch using `netlify.toml`.
+Microsoft Clarity project `zb5fa2mqgu` replaces the PostHog collector. The official
+async tag runs only on the production canonical host, skips DNT/GPC and URL or
+referrer query strings/fragments, and prevents duplicate startup. Inputs and
+private-marked elements are masked; the project uses Strict text masking. Both
+advertising and analytics storage consent are denied. No custom identity or
+content is supplied. Analytics failures cannot prevent reading. Existing PostHog
+recordings remain historical; its SDK is no longer imported by the application.
+Source/build checks, deployment and actual recording playback are verified
+separately in the cross-app rollout receipt.
