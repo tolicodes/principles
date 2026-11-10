@@ -42,3 +42,5 @@ test('blocked scripts and DOM failures cannot break rendering', () => {
   f.doc.createElement = () => { throw new Error('unavailable'); };
   assert.equal(startAnalytics(f), false);
 });
+
+test('the retained alias is explicitly allowed without allowing previews',()=>{const f=fixture();f.allowedHosts=['principles.toli.me','principles.tolicodes.com'];f.win.location={hostname:'principles.tolicodes.com',href:'https://principles.tolicodes.com/'};assert.equal(startAnalytics(f),true);});
