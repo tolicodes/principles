@@ -1,7 +1,7 @@
 // Public book pages only. Private apps need their own capture boundaries.
-export function startAnalytics({ projectId, site, win, doc }) {
+export function startAnalytics({ projectId, site, allowedHosts = [site], win, doc }) {
   try {
-    if (!/^[a-z0-9]+$/.test(projectId || "") || win.location.hostname !== site ||
+    if (!/^[a-z0-9]+$/.test(projectId || "") || !allowedHosts.includes(win.location.hostname) ||
         win.navigator.doNotTrack === "1" || win.navigator.globalPrivacyControl) return false;
     // Clarity captures page URLs itself. Never start on credential-bearing URLs.
     const url = new URL(win.location.href);
